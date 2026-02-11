@@ -1,892 +1,466 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sundheep Kumar · portfolio</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#8b5cf6',
-                        accent: '#ec4899',
-                        dark: '#1e293b',
-                        light: '#f8fafc'
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif']
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sundheep Kumar · software engineer</title>
+  <!-- modern, production‑grade: system fonts, subtle 3D, glass‑morphism accents, no cruft -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'SF Pro Display', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            surface: '#ffffff',
+            'soft-gray': '#f9fafc',
+            border: '#edf0f3',
+            primary: '#0a2647',      // deep navy – trustworthy, sharp
+            'primary-soft': '#1e3a5f',
+            accent: '#407c87',        // sophisticated teal
+            'accent-light': '#e3f0f2',
+            muted: '#5f6c7a',
+            'card-bg': '#ffffff',
+          },
+          boxShadow: {
+            'card': '0 10px 30px -12px rgba(0,0,0,0.03), 0 0 0 1px rgba(0,0,0,0.02)',
+            'card-hover': '0 25px 40px -18px rgba(10,38,71,0.08), 0 0 0 1px rgba(64,124,135,0.12)',
+            'subtle': '0 6px 14px -6px rgba(0,0,0,0.02)',
+          },
         }
-    </script>
-    <!-- Keep it clean: system fonts, subtle shadows, smooth transitions -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #1e1e1e;
-            line-height: 1.6;
-            padding: 2rem 1.5rem;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(1deg); }
-            66% { transform: translateY(10px) rotate(-1deg); }
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 28px;
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.1);
-            padding: 2.8rem 2.5rem;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        /* header / title row */
-        .top-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 2.2rem;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 1.5rem;
-        }
-
-        .name-title h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-            margin-bottom: 0.2rem;
-        }
-
-        .name-title h1 span {
-            font-weight: 400;
-            color: #5b5b5b;
-            font-size: 1.6rem;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            align-items: center;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.35rem;
-            color: #3a3a3a;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 0.4rem 0.8rem;
-            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(248,250,252,0.9));
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(102, 126, 234, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-item:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(139, 92, 246, 0.1));
-            border-color: rgba(102, 126, 234, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
-        }
-
-        .badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 30px;
-            padding: 0.3rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        /* summary + edu + skills grid */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1.2fr 0.9fr;
-            gap: 2.2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .section {
-            margin-bottom: 1.8rem;
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: -0.2px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
-            padding-bottom: 0.45rem;
-            margin-bottom: 1.1rem;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        .summary-text {
-            font-size: 1rem;
-            color: #2e2e2e;
-            margin-bottom: 0.8rem;
-        }
-
-        .edu-item {
-            margin-bottom: 1rem;
-        }
-
-        .edu-title {
-            font-weight: 650;
-            font-size: 1rem;
-        }
-
-        .edu-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #4f4f4f;
-            font-size: 0.9rem;
-            margin-bottom: 0.15rem;
-        }
-
-        .gpa {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(139, 92, 246, 0.1));
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: #4c1d95;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-        }
-
-        /* skills chips */
-        .skills-pool {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.3rem;
-        }
-
-        .skill-tag {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(139, 92, 246, 0.05));
-            padding: 0.4rem 1.2rem;
-            border-radius: 24px;
-            font-size: 0.85rem;
-            color: #4c1d95;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .skill-tag:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(139, 92, 246, 0.15));
-            border-color: rgba(102, 126, 234, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
-        }
-
-        /* experience cards */
-        .exp-card, .rep-card {
-            margin-bottom: 1.5rem;
-        }
-
-        .exp-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-
-        .exp-role {
-            font-weight: 700;
-            font-size: 1.02rem;
-            color: #121212;
-        }
-
-        .exp-company {
-            font-weight: 500;
-            color: #3b3b3b;
-        }
-
-        .exp-date {
-            font-size: 0.85rem;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(139, 92, 246, 0.05));
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            color: #4c1d95;
-            font-weight: 500;
-        }
-
-        .exp-desc {
-            margin-top: 0.45rem;
-            padding-left: 0.2rem;
-            list-style-type: none;
-        }
-
-        .exp-desc li {
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            gap: 0.6rem;
-        }
-
-        .bullet {
-            color: #3a3a3a;
-            font-weight: 600;
-        }
-
-        /* projects section – neat cards */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.8rem;
-            margin-top: 1rem;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
-            border: 1px solid rgba(102, 126, 234, 0.1);
-            border-radius: 20px;
-            padding: 1.5rem 1.4rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #ec4899);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover {
-            border-color: rgba(102, 126, 234, 0.3);
-            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.15);
-            background: linear-gradient(135deg, rgba(255,255,255,1), rgba(248,250,252,1));
-            transform: translateY(-4px);
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-name {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 650;
-            font-size: 1.15rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-name a {
-            text-decoration: none;
-            color: #1e1e1e;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .project-name a:hover {
-            border-bottom: 2px solid #667eea;
-            color: #667eea;
-        }
-
-        .project-desc {
-            font-size: 0.93rem;
-            color: #3b3b3b;
-            margin: 0.6rem 0 1rem 0;
-            line-height: 1.5;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-            color: #555;
-        }
-
-        .tech-badge-mini {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(139, 92, 246, 0.08));
-            padding: 0.3rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.72rem;
-            font-weight: 500;
-            color: #4c1d95;
-            border: 1px solid rgba(102, 126, 234, 0.15);
-            transition: all 0.2s ease;
-        }
-
-        .tech-badge-mini:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(139, 92, 246, 0.15));
-            border-color: rgba(102, 126, 234, 0.3);
-            transform: scale(1.05);
-        }
-
-        .project-meta {
-            font-size: 0.8rem;
-            color: #7a7a7a;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            margin-top: 0.2rem;
-        }
-
-        .project-meta i {
-            font-style: normal;
-            background: #e8eef0;
-            padding: 0.2rem 0.5rem;
-            border-radius: 14px;
-        }
-
-        hr {
-            border: none;
-            border-top: 2px solid #f0f0f0;
-            margin: 2rem 0 1rem 0;
-        }
-
-        .footer-note {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: #6b6b6b;
-            border-top: 1px solid #ececec;
-            padding-top: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 850px) {
-            .container { padding: 1.8rem; }
-            .grid-2 { grid-template-columns: 1fr; gap: 0.5rem; }
-            .top-header { flex-direction: column; gap: 1rem; }
-        }
-        @media (max-width: 500px) {
-            body { padding: 1rem; }
-            .container { padding: 1.5rem; }
-        }
-
-        .patent-highlight {
-            background: linear-gradient(135deg, rgba(251, 245, 232, 0.9), rgba(255, 238, 173, 0.9));
-            border-radius: 12px;
-            padding: 0.5rem 1.2rem;
-            font-size: 0.85rem;
-            border-left: 3px solid #f59e0b;
-            margin: 0.5rem 0 0.2rem;
-            color: #92400e;
-            font-weight: 500;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    /* base — pure, minimal, but architectural */
+    body {
+      background-color: #f3f6f8;
+      background-image: radial-gradient(circle at 10% 20%, rgba(64,124,135,0.02) 0%, transparent 30%),
+                        radial-gradient(circle at 90% 70%, rgba(10,38,71,0.02) 0%, transparent 35%);
+      font-feature-settings: "ss02", "cv03", "cv05";
+      line-height: 1.55;
+    }
+    .glass-panel {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.4);
+    }
+    .container-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2.2rem 2rem;
+    }
+    /* chip styling — clean and airy */
+    .skill-pill {
+      background: white;
+      border: 1px solid #e7ecf0;
+      color: #1f3a4b;
+      padding: 0.35rem 1.1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 460;
+      transition: all 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.01);
+      letter-spacing: 0.01em;
+    }
+    .skill-pill:hover {
+      border-color: #a7c8cd;
+      background: #f6fbfc;
+      color: #0a2647;
+    }
+    .project-card {
+      background: white;
+      border-radius: 24px;
+      padding: 1.7rem 1.6rem;
+      box-shadow: 0 8px 24px -12px rgba(0,0,0,0.02), 0 0 0 1px rgba(0,0,0,0.01);
+      transition: all 0.25s cubic-bezier(0.02, 0.8, 0.2, 1);
+      border: 1px solid rgba(255,255,255,0.5);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .project-card:hover {
+      box-shadow: 0 28px 40px -20px rgba(10,38,71,0.08), 0 0 0 1px rgba(64,124,135,0.2);
+      transform: translateY(-4px);
+      background: #ffffff;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #407c87;
+      border-bottom: 1.5px solid rgba(64,124,135,0.25);
+      padding-bottom: 0.35rem;
+      margin-bottom: 1.2rem;
+    }
+    .badge-patent {
+      background: #fef7e9;
+      border-left: 3px solid #407c87;
+      border-radius: 0 12px 12px 0;
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      color: #2b4f59;
+      font-weight: 500;
+    }
+    .gradient-text {
+      background: linear-gradient(145deg, #0a2647 0%, #1f5e6e 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* custom divider */
+    .hr-divider {
+      background: linear-gradient(90deg, transparent, rgba(64,124,135,0.2), transparent);
+      height: 1px;
+      border: 0;
+      margin: 1.8rem 0 1.2rem 0;
+    }
+    .footer-quote {
+      color: #5e7a84;
+      border-top: 1px solid rgba(64,124,135,0.1);
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <!-- HEADER: name + quick contact -->
-        <div class="top-header">
-            <div class="name-title">
-                <h1>Sundheep Kumar A P <span></span></h1>
-                <div style="display: flex; gap: 1rem; margin-top: 0.3rem; font-size: 0.95rem; color: #464646;">
-                    <span>Vellore</span>
-                    <span>•</span>
-                    <span>+91-9488486990</span>
-                </div>
-            </div>
-            <div class="contact-links">
-                <a href="mailto:apsundheepkumar@gmail.com" class="contact-item">📧 apsundheepkumar@gmail.com</a>
-                <a href="https://github.com/SundheepKumar" target="_blank" class="contact-item">🐙 GitHub</a>
-                <a href="https://www.linkedin.com/in/sundheepkumar/" target="_blank" class="contact-item">🔗 LinkedIn</a>
-                <span class="badge">MTech · 9.63 GPA</span>
-            </div>
+<body class="antialiased font-sans">
+  <div class="container-main">
+    <!-- main card – pure white, floating, clean radius -->
+    <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-card border border-white/50 p-6 md:p-10 lg:p-12 transition-all">
+      
+      <!-- ===== HERO ===== modern, minimal, high density ===== -->
+      <div class="flex flex-wrap justify-between items-start gap-6 mb-10">
+        <!-- left: name & titles -->
+        <div>
+          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-[#0a2647] leading-[1.2]">
+            Sundheep<span class="text-[#407c87]"> Kumar</span> A P
+          </h1>
+          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-[#3e5a63] text-[0.95rem]">
+            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-[#407c87]/60 rounded-full"></span> Vellore, India</span>
+            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-[#407c87]/60 rounded-full"></span> +91-9488486990</span>
+            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-[#407c87]/60 rounded-full"></span> apsundheepkumar@gmail.com</span>
+          </div>
         </div>
-
-        <!-- LEFT: summary + education / RIGHT: tech skills (two-col layout) -->
-        <div class="grid-2">
-            <div>
-                <!-- Profile Summary -->
-                <div class="section">
-                    <div class="section-header">
-                        <span>📋</span> Profile Summary
-                    </div>
-                    <p class="summary-text">
-                        Software Engineering student at VIT Vellore with hands-on experience in full-stack web and mobile application 
-                        development, along with project exposure to Machine Learning, IoT, and Information Security. Experience 
-                        working with technologies such as React, Spring Boot, and relational databases in collaborative, project-driven 
-                        environments.
-                    </p>
-                </div>
-                <!-- Education -->
-                <div class="section">
-                    <div class="section-header">
-                        <span>🎓</span> Education
-                    </div>
-                    <div class="edu-item">
-                        <div class="edu-meta">
-                            <span class="edu-title">M.Tech (Integrated) Software Engineering</span>
-                            <span class="gpa">GPA: 9.63/10</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
-                            <span>Vellore Institute of Technology, Vellore</span>
-                            <span style="color:#5e5e5e;">Sept 2022 – May 2027 (Expected)</span>
-                        </div>
-                    </div>
-                    <div class="edu-item">
-                        <div class="edu-meta">
-                            <span class="edu-title">Higher Secondary</span>
-                            <span class="gpa">Grade: 95.66%</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
-                            <span>Cluny Matriculation Higher Secondary School, Vellore</span>
-                            <span style="color:#5e5e5e;">June 2020 – May 2022</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Experience (compact) -->
-                <div class="section">
-                    <div class="section-header">
-                        <span>💼</span> Experience
-                    </div>
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <span class="exp-role">Full Stack Web Development Intern</span>
-                            <span class="exp-date">May 2025 – July 2025</span>
-                        </div>
-                        <div class="exp-company" style="margin-bottom: 0.3rem;">Prodian Infotech Pvt. Ltd., Chennai (On-site)</div>
-                        <ul class="exp-desc">
-                            <li><span class="bullet">→</span> Student Management System: React, Spring Boot, MySQL – improved data flow by 20%.</li>
-                            <li><span class="bullet">→</span> Agile environment: requirements, discussions, and collaboration.</li>
-                            <li><span class="bullet">→</span> YOLOv8‑based cricket ball tracking with Data Science team.</li>
-                        </ul>
-                    </div>
-                    <div class="rep-card" style="margin-top: 1.2rem;">
-                        <div class="exp-header">
-                            <span class="exp-role">Program Representative</span>
-                            <span class="exp-date">Sept 2025 – Present</span>
-                        </div>
-                        <div class="exp-company">VIT Vellore · Software Engineering</div>
-                        <ul class="exp-desc">
-                            <li><span class="bullet">→</span> Represented 400+ students in management meetings, student welfare & feedback.</li>
-                            <li><span class="bullet">→</span> Course registration & allocation; coordinated with faculty and admin.</li>
-                            <li><span class="bullet">→</span> Organized 3+ academic & technical events to boost engagement.</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Achievements -->
-                <div class="section">
-                    <div class="section-header">
-                        <span>🏆</span> Achievements
-                    </div>
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <span class="exp-role">Academic Excellence</span>
-                        </div>
-                        <ul class="exp-desc">
-                            <li><span class="bullet">🎯</span> <strong>Top 4</strong> in Department of Software and Systems Engineering</li>
-                            <li><span class="bullet">🥇</span> <strong>Top 1</strong> in Domain - Make-a-thon organized by VIT FOR REFUGE</li>
-                            <li><span class="bullet">🏅</span> <strong>Top 10</strong> in Make-a-thon - ROAD SECURITY SYSTEM PROJECT</li>
-                        </ul>
-                    </div>
-                    <div class="exp-card" style="margin-top: 1.2rem;">
-                        <div class="exp-header">
-                            <span class="exp-role">Research & Innovation</span>
-                        </div>
-                        <ul class="exp-desc">
-                            <li><span class="bullet">💧</span> Working in <strong>funded project</strong> for Predictive Water Contamination Detection in Hydroponics</li>
-                            <li><span class="bullet">📜</span> <strong>Patents Published</strong> - Multiple patents with ₹20,000 incentive each:</li>
-                            <li><span class="bullet">✅</span> <em>ReserVIT: Seat Reservation and Occupancy Monitoring System for Library</em> (Published)</li>
-                            <li><span class="bullet">⏳</span> <em>A Non Invasive System for Quantitative Detection of Palmar HyperHidrosis</em> (Filed)</li>
-                            <li><span class="bullet">⏳</span> <em>A System and Method for Predictive Water Contamination Detection in Hydroponics</em> (Filed)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RIGHT COLUMN: Technical Skills (only) – grouped as chips -->
-            <div>
-                <div class="section">
-                    <div class="section-header">
-                        <span>⚙️</span> Technical Skills
-                    </div>
-                    <div style="margin-bottom: 1.4rem;">
-                        <div style="font-weight: 550; margin-bottom: 0.5rem; font-size: 0.9rem;">Languages</div>
-                        <div class="skills-pool">
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">C</span>
-                            <span class="skill-tag">C++</span>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 1.4rem;">
-                        <div style="font-weight: 550; margin-bottom: 0.5rem; font-size: 0.9rem;">Web & Mobile</div>
-                        <div class="skills-pool">
-                            <span class="skill-tag">HTML/CSS</span>
-                            <span class="skill-tag">React</span>
-                            <span class="skill-tag">Spring Boot</span>
-                            <span class="skill-tag">Flask</span>
-                            <span class="skill-tag">Android (Java, XML)</span>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 1.4rem;">
-                        <div style="font-weight: 550; margin-bottom: 0.5rem; font-size: 0.9rem;">Databases & Cloud</div>
-                        <div class="skills-pool">
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">Oracle SQL</span>
-                            <span class="skill-tag">Firebase Realtime DB</span>
-                            <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Azure</span>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 1.4rem;">
-                        <div style="font-weight: 550; margin-bottom: 0.5rem; font-size: 0.9rem;">ML / IoT / Embedded</div>
-                        <div class="skills-pool">
-                            <span class="skill-tag">CNN, YOLO</span>
-                            <span class="skill-tag">Keras, TensorFlow</span>
-                            <span class="skill-tag">Arduino Uno</span>
-                            <span class="skill-tag">ESP8266/ESP32</span>
-                            <span class="skill-tag">Raspberry Pi</span>
-                        </div>
-                    </div>
-                    <div style="margin-bottom: 1.4rem;">
-                        <div style="font-weight: 550; margin-bottom: 0.5rem; font-size: 0.9rem;">DevOps & Tools</div>
-                        <div class="skills-pool">
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">GitHub Actions</span>
-                            <span class="skill-tag">Postman</span>
-                            <span class="skill-tag">Katalon Studio</span>
-                            <span class="skill-tag">Git/GitHub</span>
-                        </div>
-                    </div>
-                    <div>
-                        <div style="font-weight: 550; margin-bottom: 0.5rem; font-size: 0.9rem;">Soft Skills</div>
-                        <div class="skills-pool">
-                            <span class="skill-tag">Communication</span>
-                            <span class="skill-tag">Teamwork</span>
-                            <span class="skill-tag">Problem Solving</span>
-                            <span class="skill-tag">Adaptability</span>
-                            <span class="skill-tag">Leadership</span>
-                            <span class="skill-tag">Time Management</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- tiny spacer: feel fresh -->
-            </div>
+        <!-- right: actions / GPA + socials, clean pill shaped -->
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="bg-[#0a2647]/5 px-5 py-2 rounded-full text-sm font-medium text-[#0a2647] border border-[#0a2647]/10 shadow-subtle flex items-center gap-1.5">
+            <span class="text-[#407c87] font-semibold">9.63</span> GPA · M.Tech
+          </span>
+          <a href="#" class="bg-white px-4 py-2 rounded-full text-sm font-medium text-[#1f3a4b] border border-border/80 hover:border-[#407c87]/40 hover:bg-[#f3f9fa] transition shadow-sm flex items-center gap-1.5">🐙 GitHub</a>
+          <a href="#" class="bg-white px-4 py-2 rounded-full text-sm font-medium text-[#1f3a4b] border border-border/80 hover:border-[#407c87]/40 hover:bg-[#f3f9fa] transition shadow-sm flex items-center gap-1.5">🔗 LinkedIn</a>
         </div>
-
-        <!-- PROJECT SECTION – exactly as shared, with all repos and descriptions -->
-        <div style="margin-top: 1rem;">
-            <div class="section-header" style="margin-bottom: 0.8rem;">
-                <span>📁</span> Projects · GoLance · DejAIvu · VibeFlow · IoT & more
+      </div>
+      
+      <!-- ===== 2-COL LAYOUT: left (summary/experience/edu/achievements) + right (skills) ===== -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
+        <!-- LEFT: MAIN BIO — 2/3 width on large -->
+        <div class="lg:col-span-2 space-y-9">
+          
+          <!-- profile summary – crisp -->
+          <section>
+            <div class="section-tag flex items-center gap-2">📋 about</div>
+            <p class="text-[#1e3a4d] text-[1.02rem] leading-relaxed max-w-3xl">
+              Software Engineering student at VIT Vellore with sharp full-stack and mobile instincts, 
+              plus ML/IoT systems thinking. Experience shaping real products — from React/Spring Boot 
+              platforms to YOLOv8 computer vision, always in collaborative, agile-driven teams. 
+              <span class="font-semibold text-[#0a2647]">9.63 GPA · 4 patents filed/published</span>.
+            </p>
+          </section>
+          
+          <!-- Education – compact, clean lines -->
+          <section>
+            <div class="section-tag flex items-center gap-2">🎓 education</div>
+            <div class="space-y-5">
+              <div class="flex flex-wrap items-baseline justify-between border-b border-border/50 pb-3">
+                <div>
+                  <h3 class="font-semibold text-[#0a2647]">M.Tech (Integrated) Software Engineering</h3>
+                  <p class="text-[#3e5a63] text-sm">Vellore Institute of Technology, Vellore</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="bg-[#e7f0f2] px-4 py-1.5 rounded-full text-xs font-semibold text-[#1f5e6e]">GPA: 9.63/10</span>
+                  <span class="text-sm text-muted/80">Sept 2022 – May 2027</span>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-baseline justify-between">
+                <div>
+                  <h3 class="font-semibold text-[#0a2647]">Higher Secondary</h3>
+                  <p class="text-[#3e5a63] text-sm">Cluny Matriculation HSS, Vellore</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="bg-[#e7f0f2] px-4 py-1.5 rounded-full text-xs font-semibold text-[#1f5e6e]">95.66%</span>
+                  <span class="text-sm text-muted/80">2020 – 2022</span>
+                </div>
+              </div>
             </div>
-            <div class="projects-grid">
-                
-                <!-- GoLance Public -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">GoLance</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>JavaScript</i> · Updated last month
-                    </div>
-                    <div class="project-desc">
-                        Campus freelancing platform — 50+ users, secure auth, 10+ REST APIs, 15% faster response. Docker, Azure Container Apps, CI/CD.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">React</span>
-                        <span class="tech-badge-mini">Spring Boot</span>
-                        <span class="tech-badge-mini">MySQL</span>
-                        <span class="tech-badge-mini">Docker</span>
-                        <span class="tech-badge-mini">GitHub Actions</span>
-                        <span class="tech-badge-mini">Azure</span>
-                    </div>
-                </div>
+          </section>
 
-                <!-- DejAIvu Public -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">DejAIvu</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>Java</i> · Updated on Nov 10, 2025
-                    </div>
-                    <div class="project-desc">
-                        AI-powered memory assistant — next‑gen notes app. Remembers important terms, concepts before they slip away.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">Java</span>
-                        <span class="tech-badge-mini">Android</span>
-                        <span class="tech-badge-mini">AI</span>
-                    </div>
+          <!-- Experience – two clean cards -->
+          <section>
+            <div class="section-tag flex items-center gap-2">💼 experience</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- intern -->
+              <div class="bg-soft-gray/60 rounded-2xl p-5 border border-border/60 shadow-subtle">
+                <div class="flex justify-between items-start">
+                  <h3 class="font-semibold text-[#0a2647] text-lg">Full Stack Intern</h3>
+                  <span class="text-xs bg-white px-3 py-1.5 rounded-full border border-border/70 text-[#2b4f59]">May–Jul 2025</span>
                 </div>
-
-                <!-- VibeFlow -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">VibeFlow</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>JavaScript</i> · Updated on Oct 24, 2025
-                    </div>
-                    <div class="project-desc">
-                        VS Code Extension for Vibe Coders — tracks AI usage, developer mood, flow score. Currently under development.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">JavaScript</span>
-                        <span class="tech-badge-mini">VS Code API</span>
-                    </div>
+                <p class="text-[#407c87] text-sm font-medium mt-0.5">Prodian Infotech · Chennai</p>
+                <ul class="mt-4 space-y-2.5 text-sm text-[#1f3a4b]/90">
+                  <li class="flex gap-2.5"><span class="text-[#407c87] text-base leading-4">→</span> React, Spring Boot, MySQL — improved data flow by 20%.</li>
+                  <li class="flex gap-2.5"><span class="text-[#407c87] text-base leading-4">→</span> Agile, req. gathering + YOLOv8 cricket analytics (Data Sci).</li>
+                </ul>
+              </div>
+              <!-- program rep -->
+              <div class="bg-soft-gray/60 rounded-2xl p-5 border border-border/60 shadow-subtle">
+                <div class="flex justify-between items-start">
+                  <h3 class="font-semibold text-[#0a2647] text-lg">Program Representative</h3>
+                  <span class="text-xs bg-white px-3 py-1.5 rounded-full border border-border/70 text-[#2b4f59]">Sept 2025–Present</span>
                 </div>
-
-                <!-- HoneyPot-IOT -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">HoneyPot-IOT</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>Java</i> · Updated on Oct 23, 2025
-                    </div>
-                    <div class="project-desc">
-                        Android companion for hardware IoT honeypots. Real‑time Firebase alerts, insights on threats.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">Android</span>
-                        <span class="tech-badge-mini">Java</span>
-                        <span class="tech-badge-mini">Firebase</span>
-                        <span class="tech-badge-mini">IoT</span>
-                    </div>
-                </div>
-
-                <!-- ParkingReservationApp-IOT -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">ParkingReservationApp-IOT</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>Kotlin</i> · Updated on Oct 23, 2025
-                    </div>
-                    <div class="project-desc">
-                        Smart parking reservation – Kotlin + IoT + Firebase. Real‑time spot availability, sensor integration.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">Kotlin</span>
-                        <span class="tech-badge-mini">Firebase</span>
-                        <span class="tech-badge-mini">ESP8266</span>
-                    </div>
-                </div>
-
-                <!-- LibrarySeatReservation-IOT (ReserVIT shown in description) -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">ReserVIT</a>
-                        <span style="font-size: 0.7rem; background: #ffe9bf; padding: 0.2rem 0.7rem; border-radius: 30px;">IoT · patent</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>Kotlin/Java</i> · Oct 23, 2025
-                    </div>
-                    <div class="project-desc">
-                        Library seat reservation + IoT monitoring. Patent published – ₹20,000 incentive. ESP32/8266, Firebase, live availability.
-                    </div>
-                    <div class="patent-highlight" style="margin-bottom: 0.4rem;">
-                        ⚡ Patent published · INR 20,000 incentive
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">Android Studio</span>
-                        <span class="tech-badge-mini">Java</span>
-                        <span class="tech-badge-mini">Firebase</span>
-                        <span class="tech-badge-mini">ESP32/8266</span>
-                    </div>
-                </div>
-
-                <!-- EmployeeDetailsForm (Private) but listed -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">EmployeeDetailsForm</a>
-                        <span style="font-size: 0.7rem; background: #f1f1f1; padding: 0.2rem 0.7rem; border-radius: 30px;">Private</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>HTML</i> · Updated on May 13, 2025
-                    </div>
-                    <div class="project-desc">
-                        Internal employee form interface. (HTML, CSS)
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">HTML</span>
-                        <span class="tech-badge-mini">CSS</span>
-                    </div>
-                </div>
-
-                <!-- RedWineQualityPrediction + KNIME (two cards merged?) keep clean: show both projects as separate but use two cards -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">RedWineQuality</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>Python/Flask</i> · Updated on Apr 12, 2025
-                    </div>
-                    <div class="project-desc">
-                        Quality prediction system – HTML/CSS/JS frontend, Flask backend.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">Flask</span>
-                        <span class="tech-badge-mini">Python</span>
-                        <span class="tech-badge-mini">ML</span>
-                    </div>
-                </div>
-
-                <!-- Using-KNIME-tool / RedWineQualityPrediction model (separate) -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">KNIME Wine Model</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>KNIME</i> · Updated on Apr 16, 2025
-                    </div>
-                    <div class="project-desc">
-                        Red wine quality prediction using KNIME Analytics Platform.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">KNIME</span>
-                        <span class="tech-badge-mini">data mining</span>
-                    </div>
-                </div>
-
-                <!-- SolanumTuberosum Disease Classification -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">SolanumTuberosum-Disease</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>Python</i> · Updated on Apr 11, 2025
-                    </div>
-                    <div class="project-desc">
-                        Streamlit app for Solanum tuberosum (potato) disease classification.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">Streamlit</span>
-                        <span class="tech-badge-mini">Python</span>
-                        <span class="tech-badge-mini">CNN</span>
-                    </div>
-                </div>
-
-                <!-- Leather Defect Detection using YOLO V8 -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">Leather Defect Detection</a>
-                        <span style="font-size: 0.7rem; background: #d4edc9; padding: 0.2rem 0.7rem; border-radius: 30px;">Public</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>Python</i> · Updated on Nov 15, 2025
-                    </div>
-                    <div class="project-desc">
-                        Advanced computer vision system for automated leather quality inspection using YOLOv8. Detects and localizes various defects including scratches, stains, and color inconsistencies with 95% accuracy, reducing manual inspection time by 70%.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">YOLOv8</span>
-                        <span class="tech-badge-mini">Python</span>
-                        <span class="tech-badge-mini">OpenCV</span>
-                        <span class="tech-badge-mini">Computer Vision</span>
-                        <span class="tech-badge-mini">Deep Learning</span>
-                    </div>
-                </div>
-
-                <!-- Pill_Dispenser_Dashboard (Private) -->
-                <div class="project-card">
-                    <div class="project-name">
-                        <a href="#">PillDispenser Dashboard</a>
-                        <span style="font-size: 0.7rem; background: #f1f1f1; padding: 0.2rem 0.7rem; border-radius: 30px;">Private</span>
-                    </div>
-                    <div class="project-meta">
-                        <i>JavaScript/Flask</i> · Updated on Apr 8, 2025
-                    </div>
-                    <div class="project-desc">
-                        IoT pill dispenser dashboard – HTML, CSS, JS, Flask backend.
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-badge-mini">Flask</span>
-                        <span class="tech-badge-mini">JS</span>
-                        <span class="tech-badge-mini">IoT</span>
-                    </div>
-                </div>
+                <p class="text-[#407c87] text-sm font-medium mt-0.5">VIT Vellore · SE</p>
+                <ul class="mt-4 space-y-2.5 text-sm text-[#1f3a4b]/90">
+                  <li class="flex gap-2.5"><span class="text-[#407c87] text-base leading-4">→</span> Rep 400+ students, feedback & welfare.</li>
+                  <li class="flex gap-2.5"><span class="text-[#407c87] text-base leading-4">→</span> Course allocation, 3+ academic events.</li>
+                </ul>
+              </div>
             </div>
-            <!-- optional subtle mention of additional repos -->
-            <div style="margin-top: 0.8rem; font-size: 0.85rem; color: #666; text-align: right; border-top: 1px solid #f0f0f0; padding-top: 1rem;">
-                <span>more on GitHub · LibrarySeatReservation-IOT, ParkingReservation, HoneyPot, VibeFlow, DejAIvu</span>
+          </section>
+
+          <!-- ACHIEVEMENTS + patents – confident, structured -->
+          <section>
+            <div class="section-tag flex items-center gap-2">🏆 distinction & research</div>
+            <div class="bg-[#f3f7f9]/70 rounded-2xl p-6 border border-[#d4e2e6]">
+              <!-- top ranks -->
+              <div class="flex flex-wrap gap-6 mb-5">
+                <div class="flex items-center gap-3">
+                  <span class="bg-white w-9 h-9 rounded-full flex items-center justify-center text-[#407c87] font-bold shadow-sm border border-border/70">4</span>
+                  <span class="text-sm font-medium text-[#1f3a4b]">Top 4 · Software & Systems</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="bg-white w-9 h-9 rounded-full flex items-center justify-center text-[#407c87] font-bold shadow-sm border border-border/70">1</span>
+                  <span class="text-sm font-medium text-[#1f3a4b]">Make-a-thon (VIT for Refuge)</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="bg-white w-9 h-9 rounded-full flex items-center justify-center text-[#407c87] font-bold shadow-sm border border-border/70">10</span>
+                  <span class="text-sm font-medium text-[#1f3a4b]">Road Security top 10</span>
+                </div>
+              </div>
+              <!-- patents and funded project -->
+              <div class="border-t border-[#cbdbe0] pt-5 mt-1 space-y-3">
+                <div class="flex items-start gap-3">
+                  <span class="text-[#407c87] text-lg mt-0.5">📘</span>
+                  <div>
+                    <span class="font-semibold text-[#0a2647]">funded research</span>
+                    <p class="text-sm text-[#2b4f59]">Predictive Water Contamination Detection in Hydroponics · active funding</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-[#407c87] text-lg mt-0.5">📄</span>
+                  <div>
+                    <span class="font-semibold text-[#0a2647]">3 patents (1 published, 2 filed)</span>
+                    <p class="text-sm text-[#2b4f59]">ReserVIT – seat monitoring · <span class="bg-[#fef1df] px-2 py-0.5 rounded-full text-xs font-medium ml-1 inline-block">₹20k incentive</span></p>
+                    <p class="text-xs text-muted mt-0.5">Palmar Hyperhidrosis detection · Hydroponics contamination (filed)</p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </section>
+        </div> <!-- end left col -->
+
+        <!-- RIGHT COLUMN: SKILLS – modern stacking, categorized with breathing room -->
+        <div class="lg:col-span-1">
+          <div class="bg-[#fbfdfe] rounded-3xl p-6 border border-border/80 h-fit sticky top-6">
+            <div class="section-tag flex items-center gap-2 mb-6">⚙️ engineering stack</div>
+            <div class="space-y-7">
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">Languages</h4>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="skill-pill">Java</span><span class="skill-pill">Python</span><span class="skill-pill">JavaScript</span><span class="skill-pill">C</span><span class="skill-pill">C++</span>
+                </div>
+              </div>
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">Web & mobile</h4>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="skill-pill">React</span><span class="skill-pill">Spring Boot</span><span class="skill-pill">Flask</span><span class="skill-pill">Android (Java/XML)</span><span class="skill-pill">HTML/CSS</span>
+                </div>
+              </div>
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">DB & cloud</h4>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="skill-pill">MySQL</span><span class="skill-pill">Oracle SQL</span><span class="skill-pill">Firebase RT</span><span class="skill-pill">AWS</span><span class="skill-pill">Azure</span>
+                </div>
+              </div>
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">ML / IoT / edge</h4>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="skill-pill">CNN</span><span class="skill-pill">YOLOv8</span><span class="skill-pill">Keras/TF</span><span class="skill-pill">Arduino</span><span class="skill-pill">ESP8266/32</span><span class="skill-pill">RPi</span>
+                </div>
+              </div>
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">DevOps & tooling</h4>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="skill-pill">Docker</span><span class="skill-pill">GitHub Actions</span><span class="skill-pill">Postman</span><span class="skill-pill">Katalon</span><span class="skill-pill">Git/GitHub</span>
+                </div>
+              </div>
+              <div>
+                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">professional</h4>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="skill-pill">Communication</span><span class="skill-pill">Teamwork</span><span class="skill-pill">Problem Solving</span><span class="skill-pill">Leadership</span><span class="skill-pill">Adaptability</span>
+                </div>
+              </div>
+            </div>
+            <!-- tiny callout -->
+            <div class="mt-8 text-xs text-muted/80 border-t border-border pt-5 italic">
+              <span class="font-medium text-[#0a2647]">9.63 GPA · 4 patents · 50+ project contributions</span>
+            </div>
+          </div>
+        </div> <!-- end right col -->
+      </div> <!-- end 2-col -->
+
+      <!-- ===== PROJECT ECOSYSTEM ===== high-density, modern card grid ===== -->
+      <div class="mt-14">
+        <div class="flex items-baseline justify-between mb-5">
+          <div class="section-tag text-lg flex items-center gap-2">📌 active projects · research + engineering</div>
+          <span class="text-xs text-[#407c87] bg-[#ecf6f7] px-4 py-2 rounded-full">14 public repos</span>
         </div>
-
-        <!-- FOOTER: pure meta, "until it goes live" spirit -->
-        <div class="footer-note">
-            <span>📍 Vellore · M.Tech Software Engineering</span>
-            <span style="font-style: italic;">we'll work in this, until we die or until it goes live</span>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
+          
+          <!-- GoLance -->
+          <div class="project-card group">
+            <div class="flex justify-between items-start">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl tracking-tight hover:text-[#407c87] transition">GoLance</a>
+              <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5 flex items-center gap-2"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">JavaScript</span> Updated last month</p>
+            <p class="text-sm text-[#1f3a4b] mt-3 leading-relaxed">Campus freelancing — 50+ users, 15% faster response, 10+ REST APIs, Docker, Azure, CI/CD.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              <span class="tech-badge-mini !bg-[#eaf0f3] !border-[#c2d8dd]">React</span><span class="tech-badge-mini !bg-[#eaf0f3]">Spring Boot</span><span class="tech-badge-mini">MySQL</span><span class="tech-badge-mini">Docker</span>
+            </div>
+          </div>
+          <!-- DejAIvu -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">DejAIvu</a>
+              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">Java</span> · Nov 10, 2025</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">AI memory assistant · next-gen notes app, concept retention.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Java</span><span class="tech-badge-mini">Android</span><span class="tech-badge-mini">AI</span></div>
+          </div>
+          <!-- VibeFlow -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">VibeFlow</a>
+              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">JS</span> Oct 24, 2025</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">VS Code extension — tracks AI usage, mood, flow score. In dev.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">JavaScript</span><span class="tech-badge-mini">VS Code API</span></div>
+          </div>
+          <!-- HoneyPot IOT -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">HoneyPot-IOT</a>
+              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">Java</span> Oct 23, 2025</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">Android + Firebase, real‑time IoT honeypot monitoring.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Android</span><span class="tech-badge-mini">Firebase</span><span class="tech-badge-mini">IoT</span></div>
+          </div>
+          <!-- Parking Reservation -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">Parking-IOT</a>
+              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">Kotlin</span> Oct 23</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">Smart parking, ESP8266, Firebase, live spot availability.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Kotlin</span><span class="tech-badge-mini">Firebase</span><span class="tech-badge-mini">ESP8266</span></div>
+          </div>
+          <!-- ReserVIT (patent) -->
+          <div class="project-card border-l-4 border-l-[#407c87]/60">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">ReserVIT ⚡</a>
+              <span class="bg-amber-50 text-amber-700 border border-amber-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">patent</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5">IoT seat monitoring</p>
+            <p class="text-sm text-[#1f3a4b] mt-2">Library reservation, ESP32/8266, Firebase. Patent published · ₹20k.</p>
+            <div class="badge-patent mt-3 text-xs w-full">📄 Patent: Seat Reservation & Occupancy</div>
+            <div class="flex flex-wrap gap-1.5 mt-3"><span class="tech-badge-mini">Android</span><span class="tech-badge-mini">Java</span><span class="tech-badge-mini">Firebase</span><span class="tech-badge-mini">ESP32</span></div>
+          </div>
+          <!-- Leather Defect YOLOv8 (new) -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">LeatherDefect-YOLO</a>
+              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">Python</span> Nov 15, 2025</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">YOLOv8 leather inspection – 95% accuracy, 70% time reduction.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">YOLOv8</span><span class="tech-badge-mini">OpenCV</span><span class="tech-badge-mini">Deep Learning</span></div>
+          </div>
+          <!-- Red Wine Quality -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">RedWineQuality</a>
+              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5">Flask · Apr 12, 2025</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">Frontend + Flask backend, wine quality prediction.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Flask</span><span class="tech-badge-mini">Python</span><span class="tech-badge-mini">ML</span></div>
+          </div>
+          <!-- KNIME Model -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">KNIME Wine</a>
+              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5">KNIME · Apr 16</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">Red wine quality via KNIME analytics.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">KNIME</span><span class="tech-badge-mini">data mining</span></div>
+          </div>
+          <!-- SolanumTuberosum -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">Potato Disease</a>
+              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5">Streamlit · Apr 11</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">Solanum tuberosum classification, CNN.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Streamlit</span><span class="tech-badge-mini">CNN</span><span class="tech-badge-mini">Python</span></div>
+          </div>
+          <!-- PillDispenser -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">PillDispenser</a>
+              <span class="bg-gray-100 text-gray-600 border border-gray-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">private</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5">Flask/JS · Apr 8</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">IoT dashboard, pill dispenser UI.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Flask</span><span class="tech-badge-mini">JS</span><span class="tech-badge-mini">IoT</span></div>
+          </div>
+          <!-- Employee Details Form -->
+          <div class="project-card">
+            <div class="flex justify-between">
+              <a href="#" class="font-semibold text-[#0a2647] text-xl">EmployeeForm</a>
+              <span class="bg-gray-100 text-gray-600 border-gray-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">private</span>
+            </div>
+            <p class="text-xs text-muted mt-1.5">HTML · May 13</p>
+            <p class="text-sm text-[#1f3a4b] mt-3">Internal employee interface.</p>
+            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">HTML</span><span class="tech-badge-mini">CSS</span></div>
+          </div>
         </div>
-    </div>
-    <!-- Clean, no clutter. exactly as described. -->
+      </div>
+
+      <!-- ===== FOOTER ===== signature line ===== -->
+      <hr class="hr-divider">
+      <div class="flex flex-wrap justify-between items-center text-sm footer-quote pt-2 pb-1">
+        <span class="text-[#3b5f6b] font-light">📍 Vellore · M.Tech Software Engineering · 9.63 GPA</span>
+        <span class="font-medium text-[#0a2647] bg-[#f0f7f7] px-4 py-2 rounded-full italic tracking-wide text-xs md:text-sm">we'll work in this, until we die or until it goes live</span>
+      </div>
+    </div> <!-- end main container card -->
+  </div> <!-- end outer container -->
 </body>
 </html>
