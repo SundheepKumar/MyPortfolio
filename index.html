@@ -4,463 +4,567 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sundheep Kumar · software engineer</title>
-  <!-- modern, production‑grade: system fonts, subtle 3D, glass‑morphism accents, no cruft -->
+  <!-- Google Material Design 3 (clean, component-like, airy, with primary/secondary/tertiary) -->
+  <!-- Inter font – Material default -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Material Icons (for crisp icons – optional but clean) -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Tailwind – used only for layout, we override colors with Material palette -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            'sans': ['Inter', 'SF Pro Display', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            'sans': ['Inter', 'system-ui', 'Helvetica Neue', 'Arial', 'sans-serif'],
           },
           colors: {
-            surface: '#ffffff',
-            'soft-gray': '#f9fafc',
-            border: '#edf0f3',
-            primary: '#0a2647',      // deep navy – trustworthy, sharp
-            'primary-soft': '#1e3a5f',
-            accent: '#407c87',        // sophisticated teal
-            'accent-light': '#e3f0f2',
-            muted: '#5f6c7a',
-            'card-bg': '#ffffff',
+            // Material 3 – dynamic, but we pin a stable, fresh palette
+            primary: '#006A6A',    // teal – trustworthy, deep
+            'primary-container': '#E0F2F2',
+            secondary: '#47656B',  // muted blue-grey
+            'secondary-container': '#DEEDF0',
+            tertiary: '#6E5E6E',   // warm greyish mauve – subtle
+            surface: '#FDFCF8',    // off-white, easy on eyes
+            outline: '#C0C8C9',
+            'outline-light': '#E1E6E8',
+            background: '#F4F7F8',
           },
           boxShadow: {
-            'card': '0 10px 30px -12px rgba(0,0,0,0.03), 0 0 0 1px rgba(0,0,0,0.02)',
-            'card-hover': '0 25px 40px -18px rgba(10,38,71,0.08), 0 0 0 1px rgba(64,124,135,0.12)',
-            'subtle': '0 6px 14px -6px rgba(0,0,0,0.02)',
+            'card': '0 1px 3px rgba(0,0,0,0.04), 0 4px 8px rgba(0,0,0,0.02)',
+            'elevation-1': '0 2px 6px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.02)',
+            'elevation-2': '0 6px 14px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.02)',
           },
         }
       }
     }
   </script>
   <style>
-    /* base — pure, minimal, but architectural */
+    /* Material 3 – clean, component-based, nothing nostalgic */
     body {
-      background-color: #f3f6f8;
-      background-image: radial-gradient(circle at 10% 20%, rgba(64,124,135,0.02) 0%, transparent 30%),
-                        radial-gradient(circle at 90% 70%, rgba(10,38,71,0.02) 0%, transparent 35%);
-      font-feature-settings: "ss02", "cv03", "cv05";
-      line-height: 1.55;
+      background-color: #F4F7F8;  /* soft grey background */
+      font-family: 'Inter', sans-serif;
+      color: #1D2B2E;
+      line-height: 1.5;
+      padding: 2rem 1.5rem;
+      -webkit-font-smoothing: antialiased;
     }
-    .glass-panel {
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.4);
-    }
-    .container-main {
-      max-width: 1400px;
+
+    .material-container {
+      max-width: 1360px;
       margin: 0 auto;
-      padding: 2.2rem 2rem;
+      background: #FDFCF8;        /* surface */
+      border-radius: 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 4px 16px rgba(0,106,106,0.04);
+      padding: 2.4rem 2.2rem;
     }
-    /* chip styling — clean and airy */
-    .skill-pill {
-      background: white;
-      border: 1px solid #e7ecf0;
-      color: #1f3a4b;
-      padding: 0.35rem 1.1rem;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      font-weight: 460;
-      transition: all 0.15s ease;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.01);
+
+    /* chip style – Material shape, full */
+    .material-chip {
+      background: #EEF3F4;
+      color: #1D2B2E;
+      padding: 0.3rem 1.2rem;
+      border-radius: 32px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      border: none;
       letter-spacing: 0.01em;
+      transition: background 0.1s ease;
+      display: inline-flex;
+      align-items: center;
     }
-    .skill-pill:hover {
-      border-color: #a7c8cd;
-      background: #f6fbfc;
-      color: #0a2647;
+
+    .material-chip:hover {
+      background: #E1EAEC;
     }
-    .project-card {
+
+    /* card – Material elevation 1 */
+    .material-card {
       background: white;
       border-radius: 24px;
-      padding: 1.7rem 1.6rem;
-      box-shadow: 0 8px 24px -12px rgba(0,0,0,0.02), 0 0 0 1px rgba(0,0,0,0.01);
-      transition: all 0.25s cubic-bezier(0.02, 0.8, 0.2, 1);
-      border: 1px solid rgba(255,255,255,0.5);
+      padding: 1.5rem 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 6px 16px rgba(0,106,106,0.04);
+      transition: box-shadow 0.18s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+      height: 100%;
       display: flex;
       flex-direction: column;
-      height: 100%;
     }
-    .project-card:hover {
-      box-shadow: 0 28px 40px -20px rgba(10,38,71,0.08), 0 0 0 1px rgba(64,124,135,0.2);
-      transform: translateY(-4px);
-      background: #ffffff;
+
+    .material-card:hover {
+      box-shadow: 0 10px 24px rgba(0,106,106,0.06), 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #C4E0E0;
     }
-    .section-tag {
-      display: inline-block;
-      font-size: 0.7rem;
+
+    /* section header – like Material subtitle 1 */
+    .section-title-material {
+      font-size: 0.9rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: #407c87;
-      border-bottom: 1.5px solid rgba(64,124,135,0.25);
-      padding-bottom: 0.35rem;
-      margin-bottom: 1.2rem;
+      letter-spacing: 0.8px;
+      color: #006A6A;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid #E0F2F2;
+      padding-bottom: 0.65rem;
     }
-    .badge-patent {
-      background: #fef7e9;
-      border-left: 3px solid #407c87;
-      border-radius: 0 12px 12px 0;
-      padding: 0.4rem 1rem;
-      font-size: 0.78rem;
-      color: #2b4f59;
+
+    .badge-material {
+      background: #E0F2F2;
+      color: #005A5A;
+      padding: 0.25rem 0.9rem;
+      border-radius: 32px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .badge-soft {
+      background: #EEF3F4;
+      color: #2D4A4F;
+    }
+
+    /* patent / achievement – with container color */
+    .patent-chip-material {
+      background: #F4EBE4;  /* tertiary container-like */
+      color: #4E424E;
+      padding: 0.25rem 0.9rem;
+      border-radius: 32px;
+      font-size: 0.7rem;
       font-weight: 500;
     }
-    .gradient-text {
-      background: linear-gradient(145deg, #0a2647 0%, #1f5e6e 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+
+    /* status labels – using shape */
+    .status-pill {
+      background: #F0F6F6;
+      border: 0.5px solid #C4D6D6;
+      color: #1F5454;
+      padding: 0.2rem 1rem;
+      border-radius: 32px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
     }
-    /* custom divider */
-    .hr-divider {
-      background: linear-gradient(90deg, transparent, rgba(64,124,135,0.2), transparent);
-      height: 1px;
-      border: 0;
-      margin: 1.8rem 0 1.2rem 0;
+
+    .status-private {
+      background: #ECEEEF;
+      color: #47656B;
+      border-color: #C4D0D2;
     }
-    .footer-quote {
-      color: #5e7a84;
-      border-top: 1px solid rgba(64,124,135,0.1);
+
+    .material-icons {
+      font-size: 1.2rem;
+      color: #006A6A;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #E1E6E8;
+      margin: 2rem 0 1.2rem;
+    }
+
+    /* typography */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    a {
+      color: #1D2B2E;
+      transition: color 0.1s;
+    }
+
+    a:hover {
+      color: #006A6A;
+    }
+
+    .material-icon-small {
+      font-size: 1rem;
+      color: #47656B;
+    }
+
+    /* force subtle material touches */
+    .elevation-border {
+      border: 1px solid rgba(0,106,106,0.06);
     }
   </style>
 </head>
-<body class="antialiased font-sans">
-  <div class="container-main">
-    <!-- main card – pure white, floating, clean radius -->
-    <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-card border border-white/50 p-6 md:p-10 lg:p-12 transition-all">
-      
-      <!-- ===== HERO ===== modern, minimal, high density ===== -->
-      <div class="flex flex-wrap justify-between items-start gap-6 mb-10">
-        <!-- left: name & titles -->
-        <div>
-          <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-[#0a2647] leading-[1.2]">
-            Sundheep<span class="text-[#407c87]"> Kumar</span> A P
-          </h1>
-          <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-3 text-[#3e5a63] text-[0.95rem]">
-            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-[#407c87]/60 rounded-full"></span> Vellore, India</span>
-            <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-[#407c87]/60 rounded-full"></span> +91-9488486990</span>
-            <a href="mailto:apsundheepkumar@gmail.com" class="flex items-center gap-1.5 hover:text-[#407c87] transition-colors"><span class="w-1.5 h-1.5 bg-[#407c87]/60 rounded-full"></span> apsundheepkumar@gmail.com</a>
-          </div>
-        </div>
-        <!-- right: actions / GPA + socials, clean pill shaped -->
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="bg-[#0a2647]/5 px-5 py-2 rounded-full text-sm font-medium text-[#0a2647] border border-[#0a2647]/10 shadow-subtle flex items-center gap-1.5">
-            <span class="text-[#407c87] font-semibold">9.63</span> GPA · M.Tech
-          </span>
-          <a href="https://github.com/SundheepKumar" target="_blank" class="bg-white px-4 py-2 rounded-full text-sm font-medium text-[#1f3a4b] border border-border/80 hover:border-[#407c87]/40 hover:bg-[#f3f9fa] transition shadow-sm flex items-center gap-1.5"> GitHub</a>
-          <a href="https://www.linkedin.com/in/sundheepkumar/" target="_blank" class="bg-white px-4 py-2 rounded-full text-sm font-medium text-[#1f3a4b] border border-border/80 hover:border-[#407c87]/40 hover:bg-[#f3f9fa] transition shadow-sm flex items-center gap-1.5"> LinkedIn</a>
+<body>
+  <div class="material-container">
+    <!-- ======= HEADER – clean, functional, material ====== -->
+    <div class="flex flex-wrap justify-between items-start gap-5 mb-12">
+      <!-- left -->
+      <div>
+        <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-[#1D2B2E] leading-[1.1]">
+          Sundheep Kumar<span class="text-[#006A6A] ml-2">AP</span>
+        </h1>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mt-3 text-[#47656B] text-[0.95rem]">
+          <span class="flex items-center gap-1.5"><span class="material-icons text-[#006A6A] text-base">location_on</span> Vellore, India</span>
+          <span class="flex items-center gap-1.5"><span class="material-icons text-[#006A6A] text-base">call</span> +91-9488486990</span>
+          <a href="mailto:apsundheepkumar@gmail.com" class="flex items-center gap-1.5 border-b border-transparent hover:border-[#006A6A] transition">
+            <span class="material-icons text-[#006A6A] text-base">email</span> apsundheepkumar@gmail.com
+          </a>
         </div>
       </div>
-      
-      <!-- ===== 2-COL LAYOUT: left (summary/experience/edu/achievements) + right (skills) ===== -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-12">
-        <!-- LEFT: MAIN BIO — 2/3 width on large -->
-        <div class="lg:col-span-2 space-y-9">
-          
-          <!-- profile summary – crisp -->
-          <section>
-            <div class="section-tag flex items-center gap-2">📋 about</div>
-            <p class="text-[#1e3a4d] text-[1.02rem] leading-relaxed max-w-3xl">
-              Software Engineering student at VIT Vellore with sharp full-stack and mobile instincts, 
-              plus ML/IoT systems thinking. Experience shaping real products — from React/Spring Boot 
-              platforms to YOLOv8 computer vision, always in collaborative, agile-driven teams. 
-              <span class="font-semibold text-[#0a2647]">9.63 GPA · 4 patents filed/published</span>.
-            </p>
-          </section>
-          
-          <!-- Education – compact, clean lines -->
-          <section>
-            <div class="section-tag flex items-center gap-2">🎓 education</div>
-            <div class="space-y-5">
-              <div class="flex flex-wrap items-baseline justify-between border-b border-border/50 pb-3">
-                <div>
-                  <h3 class="font-semibold text-[#0a2647]">M.Tech (Integrated) Software Engineering</h3>
-                  <p class="text-[#3e5a63] text-sm">Vellore Institute of Technology, Vellore</p>
-                </div>
-                <div class="flex items-center gap-4">
-                  <span class="bg-[#e7f0f2] px-4 py-1.5 rounded-full text-xs font-semibold text-[#1f5e6e]">GPA: 9.63/10</span>
-                  <span class="text-sm text-muted/80">Sept 2022 – May 2027</span>
-                </div>
-              </div>
-              <div class="flex flex-wrap items-baseline justify-between">
-                <div>
-                  <h3 class="font-semibold text-[#0a2647]">Higher Secondary</h3>
-                  <p class="text-[#3e5a63] text-sm">Cluny Matriculation HSS, Vellore</p>
-                </div>
-                <div class="flex items-center gap-4">
-                  <span class="bg-[#e7f0f2] px-4 py-1.5 rounded-full text-xs font-semibold text-[#1f5e6e]">95.66%</span>
-                  <span class="text-sm text-muted/80">2020 – 2022</span>
-                </div>
-              </div>
-            </div>
-          </section>
+      <!-- right – GPA + socials with Material chip style -->
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="material-chip bg-[#E0F2F2] text-[#005252] font-semibold flex items-center gap-1.5">
+          <span class="material-icons text-sm">grade</span> 9.63 GPA · M.Tech
+        </span>
+        <a href="https://github.com/SundheepKumar" target="_blank" class="material-chip flex items-center gap-1.5">
+          <span class="material-icons text-sm">code</span> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/sundheepkumar/" target="_blank" class="material-chip flex items-center gap-1.5">
+          <span class="material-icons text-sm">work</span> LinkedIn
+        </a>
+      </div>
+    </div>
 
-          <!-- Experience – two clean cards -->
-          <section>
-            <div class="section-tag flex items-center gap-2">💼 experience</div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- intern -->
-              <div class="bg-soft-gray/60 rounded-2xl p-5 border border-border/60 shadow-subtle">
-                <div class="flex justify-between items-start">
-                  <h3 class="font-semibold text-[#0a2647] text-lg">Full Stack Intern</h3>
-                  <span class="text-xs bg-white px-3 py-1.5 rounded-full border border-border/70 text-[#2b4f59]">May–Jul 2025</span>
-                </div>
-                <p class="text-[#407c87] text-sm font-medium mt-0.5">Prodian Infotech · Chennai</p>
-                <ul class="mt-4 space-y-2.5 text-sm text-[#1f3a4b]/90">
-                  <li class="flex gap-2.5"><span class="text-[#407c87] text-base leading-4">→</span> React, Spring Boot, MySQL — improved data flow by 20%.</li>
-                  <li class="flex gap-2.5"><span class="text-[#407c87] text-base leading-4">→</span> Agile, req. gathering + YOLOv8 cricket analytics (Data Sci).</li>
-                </ul>
-              </div>
-              <!-- program rep -->
-              <div class="bg-soft-gray/60 rounded-2xl p-5 border border-border/60 shadow-subtle">
-                <div class="flex justify-between items-start">
-                  <h3 class="font-semibold text-[#0a2647] text-lg">Program Representative</h3>
-                  <span class="text-xs bg-white px-3 py-1.5 rounded-full border border-border/70 text-[#2b4f59]">Sept 2025–Present</span>
-                </div>
-                <p class="text-[#407c87] text-sm font-medium mt-0.5">VIT Vellore · SE</p>
-                <ul class="mt-4 space-y-2.5 text-sm text-[#1f3a4b]/90">
-                  <li class="flex gap-2.5"><span class="text-[#407c87] text-base leading-4">→</span> Rep 400+ students, feedback & welfare.</li>
-                  <li class="flex gap-2.5"><span class="text-[#407c87] text-base leading-4">→</span> Course allocation, 3+ academic events.</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <!-- ACHIEVEMENTS + patents – confident, structured -->
-          <section>
-            <div class="section-tag flex items-center gap-2">🏆 distinction & research</div>
-            <div class="bg-[#f3f7f9]/70 rounded-2xl p-6 border border-[#d4e2e6]">
-              <!-- top ranks -->
-              <div class="flex flex-wrap gap-6 mb-5">
-                <div class="flex items-center gap-3">
-                  <span class="bg-white w-9 h-9 rounded-full flex items-center justify-center text-[#407c87] font-bold shadow-sm border border-border/70">4</span>
-                  <span class="text-sm font-medium text-[#1f3a4b]">Top 4 · Software & Systems</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <span class="bg-white w-9 h-9 rounded-full flex items-center justify-center text-[#407c87] font-bold shadow-sm border border-border/70">1</span>
-                  <span class="text-sm font-medium text-[#1f3a4b]">Make-a-thon (VIT for Refuge)</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <span class="bg-white w-9 h-9 rounded-full flex items-center justify-center text-[#407c87] font-bold shadow-sm border border-border/70">10</span>
-                  <span class="text-sm font-medium text-[#1f3a4b]">Road Security top 10</span>
-                </div>
-              </div>
-              <!-- patents and funded project -->
-              <div class="border-t border-[#cbdbe0] pt-5 mt-1 space-y-3">
-                <div class="flex items-start gap-3">
-                  <span class="text-[#407c87] text-lg mt-0.5">📘</span>
-                  <div>
-                    <span class="font-semibold text-[#0a2647]">funded research</span>
-                    <p class="text-sm text-[#2b4f59]">Predictive Water Contamination Detection in Hydroponics · active funding</p>
-                  </div>
-                </div>
-                <div class="flex items-start gap-3">
-                  <span class="text-[#407c87] text-lg mt-0.5">📄</span>
-                  <div>
-                    <span class="font-semibold text-[#0a2647]">3 patents (1 published, 2 filed)</span>
-                    <p class="text-sm text-[#2b4f59]">ReserVIT – seat monitoring · <span class="bg-[#fef1df] px-2 py-0.5 rounded-full text-xs font-medium ml-1 inline-block">₹20k incentive</span></p>
-                    <p class="text-xs text-muted mt-0.5">Palmar Hyperhidrosis detection · Hydroponics contamination (filed)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div> <!-- end left col -->
-
-        <!-- RIGHT COLUMN: SKILLS – modern stacking, categorized with breathing room -->
-        <div class="lg:col-span-1">
-          <div class="bg-[#fbfdfe] rounded-3xl p-6 border border-border/80 h-fit sticky top-6">
-            <div class="section-tag flex items-center gap-2 mb-6">⚙️ engineering stack</div>
-            <div class="space-y-7">
-              <div>
-                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">Languages</h4>
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="skill-pill">Java</span><span class="skill-pill">Python</span><span class="skill-pill">JavaScript</span><span class="skill-pill">C</span><span class="skill-pill">C++</span>
-                </div>
-              </div>
-              <div>
-                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">Web & mobile</h4>
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="skill-pill">React</span><span class="skill-pill">Spring Boot</span><span class="skill-pill">Flask</span><span class="skill-pill">Android (Java/XML)</span><span class="skill-pill">HTML/CSS</span>
-                </div>
-              </div>
-              <div>
-                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">DB & cloud</h4>
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="skill-pill">MySQL</span><span class="skill-pill">Oracle SQL</span><span class="skill-pill">Firebase RT</span><span class="skill-pill">AWS</span><span class="skill-pill">Azure</span>
-                </div>
-              </div>
-              <div>
-                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">ML / IoT / edge</h4>
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="skill-pill">CNN</span><span class="skill-pill">YOLOv8</span><span class="skill-pill">Keras/TF</span><span class="skill-pill">Arduino</span><span class="skill-pill">ESP8266/32</span><span class="skill-pill">RPi</span>
-                </div>
-              </div>
-              <div>
-                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">DevOps & tooling</h4>
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="skill-pill">Docker</span><span class="skill-pill">GitHub Actions</span><span class="skill-pill">Postman</span><span class="skill-pill">Katalon</span><span class="skill-pill">Git/GitHub</span>
-                </div>
-              </div>
-              <div>
-                <h4 class="text-xs uppercase tracking-wider font-semibold text-[#407c87] mb-3">professional</h4>
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="skill-pill">Communication</span><span class="skill-pill">Teamwork</span><span class="skill-pill">Problem Solving</span><span class="skill-pill">Leadership</span><span class="skill-pill">Adaptability</span>
-                </div>
-              </div>
-            </div>
-            <!-- tiny callout -->
-            <div class="mt-8 text-xs text-muted/80 border-t border-border pt-5 italic">
-              <span class="font-medium text-[#0a2647]">9.63 GPA · 4 patents · 50+ project contributions</span>
-            </div>
-          </div>
-        </div> <!-- end right col -->
-      </div> <!-- end 2-col -->
-
-      <!-- ===== PROJECT ECOSYSTEM ===== high-density, modern card grid ===== -->
-      <div class="mt-14">
-        <div class="flex items-baseline justify-between mb-5">
-          <div class="section-tag text-lg flex items-center gap-2">📌 active projects · research + engineering</div>
-          <span class="text-xs text-[#407c87] bg-[#ecf6f7] px-4 py-2 rounded-full">14 public repos</span>
-        </div>
+    <!-- ======= 2-COL LAYOUT – left main / right skills ====== -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-14">
+      <!-- LEFT COLUMN – about, edu, exp, achievements -->
+      <div class="lg:col-span-2 space-y-11">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
-          
-          <!-- GoLance -->
-          <div class="project-card group">
-            <div class="flex justify-between items-start">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl tracking-tight hover:text-[#407c87] transition">GoLance</a>
-              <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">public</span>
+        <!-- about – Material body large -->
+        <section>
+          <div class="section-title-material">
+            <span class="material-icons">person_outline</span> about
+          </div>
+          <p class="text-[#1D2B2E] text-[1.02rem] leading-relaxed max-w-3xl" style="font-weight: 400;">
+            Software Engineering student at VIT Vellore with strong full-stack, mobile, and ML/IoT product instincts. 
+            I build with <span class="font-medium text-[#006A6A]">React, Spring Boot, YOLOv8, Android</span> — always in collaborative, agile teams. 
+            <span class="bg-[#E0F2F2] px-3 py-1 rounded-full text-sm font-medium ml-2 inline-block">9.63 GPA · 4 patents</span>
+          </p>
+        </section>
+
+        <!-- Education – list style material -->
+        <section>
+          <div class="section-title-material">
+            <span class="material-icons">school</span> education
+          </div>
+          <div class="space-y-5">
+            <div class="flex flex-wrap items-baseline justify-between">
+              <div>
+                <h3 class="font-semibold text-[#1D2B2E] text-xl">M.Tech (Integrated) Software Engineering</h3>
+                <p class="text-[#47656B] text-sm">Vellore Institute of Technology, Vellore</p>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="badge-material">GPA: 9.63/10</span>
+                <span class="text-sm text-[#47656B]">2022 – 2027</span>
+              </div>
             </div>
-            <p class="text-xs text-muted mt-1.5 flex items-center gap-2"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">JavaScript</span> Updated last month</p>
-            <p class="text-sm text-[#1f3a4b] mt-3 leading-relaxed">Campus freelancing — 50+ users, 15% faster response, 10+ REST APIs, Docker, Azure, CI/CD.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4">
-              <span class="tech-badge-mini !bg-[#eaf0f3] !border-[#c2d8dd]">React</span><span class="tech-badge-mini !bg-[#eaf0f3]">Spring Boot</span><span class="tech-badge-mini">MySQL</span><span class="tech-badge-mini">Docker</span>
+            <div class="flex flex-wrap items-baseline justify-between">
+              <div>
+                <h3 class="font-semibold text-[#1D2B2E] text-xl">Higher Secondary</h3>
+                <p class="text-[#47656B] text-sm">Cluny Matriculation HSS, Vellore</p>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="badge-material">95.66%</span>
+                <span class="text-sm text-[#47656B]">2020 – 2022</span>
+              </div>
+            </div>
+                 <div class="flex flex-wrap items-baseline justify-between">
+              <div>
+                <h3 class="font-semibold text-[#1D2B2E] text-xl">SSLC</h3>
+                <p class="text-[#47656B] text-sm">Cluny Matriculation Higher Secondary School, Vellore</p>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="badge-material">96%</span>
+                <span class="text-sm text-[#47656B]">2008 – 2020</span>
+              </div>
             </div>
           </div>
-          <!-- DejAIvu -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">DejAIvu</a>
-              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
-            </div>
-            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">Java</span> · Nov 10, 2025</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">AI memory assistant · next-gen notes app, concept retention.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Java</span><span class="tech-badge-mini">Android</span><span class="tech-badge-mini">AI</span></div>
+        </section>
+
+        <!-- Experience – two clean Material cards -->
+        <section>
+          <div class="section-title-material">
+            <span class="material-icons">business_center</span> experience
           </div>
-          <!-- VibeFlow -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">VibeFlow</a>
-              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Prodian Intern -->
+            <div class="bg-white rounded-2xl p-5 shadow-card border border-[#E1E9EA]">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-semibold text-[#1D2B2E] text-lg">Full Stack Intern</h3>
+                  <p class="text-[#006A6A] text-sm font-medium">Prodian Infotech · Chennai</p>
+                </div>
+                <span class="bg-[#EEF3F4] px-3 py-1.5 rounded-full text-xs font-medium text-[#2A4F55]">May–Jul 2025</span>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-[#2A4F55]">
+                <li class="flex gap-2.5"><span class="material-icons text-[#006A6A] text-base">chevron_right</span> React, Spring Boot, MySQL – 20% data flow ↑</li>
+                <li class="flex gap-2.5"><span class="material-icons text-[#006A6A] text-base">chevron_right</span> Agile, YOLOv8 cricket analytics (Data Sci collab)</li>
+              </ul>
             </div>
-            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">JS</span> Oct 24, 2025</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">VS Code extension — tracks AI usage, mood, flow score. In dev.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">JavaScript</span><span class="tech-badge-mini">VS Code API</span></div>
+            <!-- Program Rep -->
+            <div class="bg-white rounded-2xl p-5 shadow-card border border-[#E1E9EA]">
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="font-semibold text-[#1D2B2E] text-lg">Program Representative</h3>
+                  <p class="text-[#006A6A] text-sm font-medium">VIT Vellore · SE</p>
+                </div>
+                <span class="bg-[#EEF3F4] px-3 py-1.5 rounded-full text-xs font-medium text-[#2A4F55]">Sept 2025–Present</span>
+              </div>
+              <ul class="mt-4 space-y-2 text-sm text-[#2A4F55]">
+                <li class="flex gap-2.5"><span class="material-icons text-[#006A6A] text-base">chevron_right</span> 400+ student representation, welfare</li>
+                <li class="flex gap-2.5"><span class="material-icons text-[#006A6A] text-base">chevron_right</span> Course allocation, 3+ tech events</li>
+              </ul>
+            </div>
           </div>
-          <!-- HoneyPot IOT -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">HoneyPot-IOT</a>
-              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
-            </div>
-            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">Java</span> Oct 23, 2025</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">Android + Firebase, real‑time IoT honeypot monitoring.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Android</span><span class="tech-badge-mini">Firebase</span><span class="tech-badge-mini">IoT</span></div>
+        </section>
+
+        <!-- Achievements + patents – material surface container -->
+        <section>
+          <div class="section-title-material">
+            <span class="material-icons">emoji_events</span> distinction & research
           </div>
-          <!-- Parking Reservation -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">Parking-IOT</a>
-              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+          <div class="bg-[#F8FBFB] rounded-3xl p-6 border border-[#D9E7E9]">
+            <!-- ranks -->
+            <div class="flex flex-wrap gap-6 mb-5">
+              <div class="flex items-center gap-3">
+                <span class="bg-[#E0F2F2] w-10 h-10 rounded-full flex items-center justify-center text-[#006A6A] font-bold text-sm">4</span>
+                <span class="text-sm font-medium text-[#1D2B2E]">Top 4 - University Day, Department of Software & Systems Engineering for two consecutive years</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="bg-[#E0F2F2] w-10 h-10 rounded-full flex items-center justify-center text-[#006A6A] font-bold text-sm">1</span>
+                <span class="text-sm font-medium text-[#1D2B2E]">Top 1 in Domain (Make-a-thon 2025, for Refuge - Road Safety System for Non-ADAS vehicles)</span>
+              </div>
+             
             </div>
-            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">Kotlin</span> Oct 23</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">Smart parking, ESP8266, Firebase, live spot availability.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Kotlin</span><span class="tech-badge-mini">Firebase</span><span class="tech-badge-mini">ESP8266</span></div>
+            <!-- patents -->
+            <div class="border-t border-[#C8DBDD] pt-5 space-y-3">
+              <div class="flex items-start gap-3">
+                <span class="material-icons text-[#006A6A]">science</span>
+                <div>
+                  <span class="font-semibold text-[#1D2B2E]">Funded research</span>
+                  <p class="text-sm text-[#47656B]">Predictive Water Contamination · Hydroponics (active)</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="material-icons text-[#006A6A]">article</span>
+                <div>
+                  <span class="font-semibold text-[#1D2B2E]">3 patents (1 published, 2 filed)</span>
+                  <p class="text-sm text-[#47656B]">ReserVIT – seat monitoring · <span class="bg-[#F4EBE4] px-2 py-0.5 rounded-full text-xs ml-1">₹20k incentive</span></p>
+                  <p class="text-xs text-[#6D8A8F] mt-0.5">Palmar Hyperhidrosis · Hydroponics (filed)</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <!-- ReserVIT (patent) -->
-          <div class="project-card border-l-4 border-l-[#407c87]/60">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">ReserVIT ⚡</a>
-              <span class="bg-amber-50 text-amber-700 border border-amber-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">patent</span>
-            </div>
-            <p class="text-xs text-muted mt-1.5">IoT seat monitoring</p>
-            <p class="text-sm text-[#1f3a4b] mt-2">Library reservation, ESP32/8266, Firebase. Patent published · ₹20k.</p>
-            <div class="badge-patent mt-3 text-xs w-full">📄 Patent: Seat Reservation & Occupancy</div>
-            <div class="flex flex-wrap gap-1.5 mt-3"><span class="tech-badge-mini">Android</span><span class="tech-badge-mini">Java</span><span class="tech-badge-mini">Firebase</span><span class="tech-badge-mini">ESP32</span></div>
+        </section>
+      </div> <!-- end left col -->
+
+      <!-- RIGHT – SKILLS, Material 3 card, categories -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-3xl p-6 shadow-elevation-1 border border-[#E7EDEE] sticky top-6">
+          <div class="section-title-material mb-5">
+            <span class="material-icons">construction</span> skills
           </div>
-          <!-- Leather Defect YOLOv8 (new) -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">LeatherDefect-YOLO</a>
-              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
+          <div class="space-y-7">
+            <div>
+              <h4 class="text-xs uppercase tracking-wider font-semibold text-[#006A6A] mb-3">Languages</h4>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="material-chip">Java</span><span class="material-chip">Python</span><span class="material-chip">JavaScript</span><span class="material-chip">C</span><span class="material-chip">C++</span>
+              </div>
             </div>
-            <p class="text-xs text-muted mt-1.5"><span class="bg-[#eef2f5] px-2.5 py-1 rounded-full">Python</span> Nov 15, 2025</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">YOLOv8 leather inspection – 95% accuracy, 70% time reduction.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">YOLOv8</span><span class="tech-badge-mini">OpenCV</span><span class="tech-badge-mini">Deep Learning</span></div>
+            <div>
+              <h4 class="text-xs uppercase tracking-wider font-semibold text-[#006A6A] mb-3">Web & mobile</h4>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="material-chip">React</span><span class="material-chip">Spring Boot</span><span class="material-chip">Flask</span><span class="material-chip">Android (Java/XML)</span><span class="material-chip">HTML/CSS</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-xs uppercase tracking-wider font-semibold text-[#006A6A] mb-3">DB & cloud</h4>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="material-chip">MySQL</span><span class="material-chip">Oracle SQL</span><span class="material-chip">Firebase RT</span><span class="material-chip">AWS</span><span class="material-chip">Azure</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-xs uppercase tracking-wider font-semibold text-[#006A6A] mb-3">ML / IoT / edge</h4>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="material-chip">CNN</span><span class="material-chip">YOLOv8</span><span class="material-chip">Keras/TF</span><span class="material-chip">Arduino</span><span class="material-chip">ESP8266/32</span><span class="material-chip">RPi</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-xs uppercase tracking-wider font-semibold text-[#006A6A] mb-3">DevOps & tooling</h4>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="material-chip">Docker</span><span class="material-chip">GitHub Actions</span><span class="material-chip">Postman</span><span class="material-chip">Katalon</span><span class="material-chip">Git/GitHub</span>
+              </div>
+            </div>
+            <div>
+              <h4 class="text-xs uppercase tracking-wider font-semibold text-[#006A6A] mb-3">Professional</h4>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="material-chip">Communication</span><span class="material-chip">Teamwork</span><span class="material-chip">Problem Solving</span><span class="material-chip">Leadership</span><span class="material-chip">Adaptability</span>
+              </div>
+            </div>
           </div>
-          <!-- Red Wine Quality -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">RedWineQuality</a>
-              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
-            </div>
-            <p class="text-xs text-muted mt-1.5">Flask · Apr 12, 2025</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">Frontend + Flask backend, wine quality prediction.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Flask</span><span class="tech-badge-mini">Python</span><span class="tech-badge-mini">ML</span></div>
-          </div>
-          <!-- KNIME Model -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">KNIME Wine</a>
-              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
-            </div>
-            <p class="text-xs text-muted mt-1.5">KNIME · Apr 16</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">Red wine quality via KNIME analytics.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">KNIME</span><span class="tech-badge-mini">data mining</span></div>
-          </div>
-          <!-- SolanumTuberosum -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">Potato Disease</a>
-              <span class="bg-emerald-50 text-emerald-700 border-emerald-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">public</span>
-            </div>
-            <p class="text-xs text-muted mt-1.5">Streamlit · Apr 11</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">Solanum tuberosum classification, CNN.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Streamlit</span><span class="tech-badge-mini">CNN</span><span class="tech-badge-mini">Python</span></div>
-          </div>
-          <!-- PillDispenser -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">PillDispenser</a>
-              <span class="bg-gray-100 text-gray-600 border border-gray-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">private</span>
-            </div>
-            <p class="text-xs text-muted mt-1.5">Flask/JS · Apr 8</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">IoT dashboard, pill dispenser UI.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">Flask</span><span class="tech-badge-mini">JS</span><span class="tech-badge-mini">IoT</span></div>
-          </div>
-          <!-- Employee Details Form -->
-          <div class="project-card">
-            <div class="flex justify-between">
-              <a href="#" class="font-semibold text-[#0a2647] text-xl">EmployeeForm</a>
-              <span class="bg-gray-100 text-gray-600 border-gray-200 text-[0.65rem] font-bold px-2.5 py-1 rounded-full">private</span>
-            </div>
-            <p class="text-xs text-muted mt-1.5">HTML · May 13</p>
-            <p class="text-sm text-[#1f3a4b] mt-3">Internal employee interface.</p>
-            <div class="flex flex-wrap gap-1.5 mt-4"><span class="tech-badge-mini">HTML</span><span class="tech-badge-mini">CSS</span></div>
+          <div class="mt-8 text-xs text-[#47656B] border-t border-[#DCE5E7] pt-5">
+            <span class="font-medium text-[#006A6A]">14+ public repos · 4 patents · 9.63 GPA</span>
           </div>
         </div>
       </div>
+    </div> <!-- end 2-col -->
 
-      <!-- ===== FOOTER ===== signature line ===== -->
-      <hr class="hr-divider">
-      <div class="flex flex-wrap justify-between items-center text-sm footer-quote pt-2 pb-1">
-        
-        <span class="font-medium text-[#0a2647] bg-[#f0f7f7] px-4 py-2 rounded-full italic tracking-wide text-xs md:text-sm">"and rivers in the desert will I see..."</span>
+    <!-- ===== PROJECT GRID – Material component cards ===== -->
+    <div class="mt-16">
+      <div class="flex items-baseline justify-between mb-6">
+        <div class="section-title-material text-base">
+          <span class="material-icons">folder_open</span> projects
+        </div>
+        <span class="status-pill">14 public · 2 private</span>
       </div>
-    </div> <!-- end main container card -->
-  </div> <!-- end outer container -->
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
+        
+        <!-- GoLance -->
+        <div class="material-card">
+          <div class="flex justify-between items-start">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl tracking-tight hover:text-[#006A6A]">GoLance</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2 flex items-center gap-2"><span class="material-chip text-[0.65rem] py-0.5 bg-[#E7F0F0]">JavaScript</span> Updated last month</p>
+          <p class="text-sm text-[#1D2B2E] mt-3 leading-relaxed">Campus freelancing — 50+ users, 15% faster response, 10+ REST APIs, Docker, Azure, CI/CD.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            <span class="material-chip !py-1 !px-2.5 text-[0.7rem]">React</span><span class="material-chip !py-1 !px-2.5">Spring Boot</span><span class="material-chip">MySQL</span><span class="material-chip">Docker</span>
+          </div>
+        </div>
+
+        <!-- DejAIvu -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">DejAIvu</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2"><span class="material-chip text-[0.65rem]">Java</span> · Nov 10, 2025</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">AI memory assistant · next-gen notes, concept retention.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">Java</span><span class="material-chip">Android</span><span class="material-chip">AI</span></div>
+        </div>
+
+        <!-- VibeFlow -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">VibeFlow</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2"><span class="material-chip">JS</span> Oct 24, 2025</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">VS Code extension — AI usage, mood, flow score. In dev.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">JavaScript</span><span class="material-chip">VS Code API</span></div>
+        </div>
+
+        <!-- HoneyPot -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">HoneyPot-IOT</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2"><span class="material-chip">Java</span> Oct 23, 2025</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">Android + Firebase, real‑time IoT honeypot.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">Android</span><span class="material-chip">Firebase</span><span class="material-chip">IoT</span></div>
+        </div>
+
+        <!-- Parking-IOT -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">Parking-IOT</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2"><span class="material-chip">Kotlin</span> Oct 23</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">Smart parking, ESP8266, Firebase, live availability.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">Kotlin</span><span class="material-chip">Firebase</span><span class="material-chip">ESP8266</span></div>
+        </div>
+
+        <!-- ReserVIT patent -->
+        <div class="material-card bg-[#F6FBFB] border-l-4 border-l-[#006A6A]">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">ReserVIT</a>
+            <span class="patent-chip-material">patent</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2">IoT seat monitoring</p>
+          <p class="text-sm text-[#1D2B2E] mt-2">Library reservation, ESP32/8266, Firebase. Patent · ₹20k.</p>
+          <div class="mt-3 text-xs bg-[#E0F2F2] p-2 rounded-lg w-fit text-[#005252] flex items-center gap-1"><span class="material-icons text-sm">picture_as_pdf</span> Seat Reservation & Occupancy</div>
+          <div class="flex flex-wrap gap-1.5 mt-3"><span class="material-chip">Android</span><span class="material-chip">Java</span><span class="material-chip">Firebase</span><span class="material-chip">ESP32</span></div>
+        </div>
+
+        <!-- Leather Defect -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">LeatherDefect</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2"><span class="material-chip">Python</span> Nov 15, 2025</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">YOLOv8 leather inspection – 95% accuracy, 70% time ↓</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">YOLOv8</span><span class="material-chip">OpenCV</span><span class="material-chip">Deep Learning</span></div>
+        </div>
+
+        <!-- RedWine -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">RedWineQuality</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2">Flask · Apr 12</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">Wine quality prediction, Flask + ML.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">Flask</span><span class="material-chip">Python</span><span class="material-chip">ML</span></div>
+        </div>
+
+        <!-- KNIME -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">KNIME Wine</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2">KNIME · Apr 16</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">KNIME analytics, red wine quality.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">KNIME</span><span class="material-chip">data mining</span></div>
+        </div>
+
+        <!-- Potato Disease -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">Potato Disease</a>
+            <span class="status-pill">public</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2">Streamlit · Apr 11</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">Solanum tuberosum, CNN classification.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">Streamlit</span><span class="material-chip">CNN</span><span class="material-chip">Python</span></div>
+        </div>
+
+        <!-- PillDispenser private -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">PillDispenser</a>
+            <span class="status-pill status-private">private</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2">Flask/JS · Apr 8</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">IoT dashboard, pill dispenser UI.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">Flask</span><span class="material-chip">JS</span><span class="material-chip">IoT</span></div>
+        </div>
+
+        <!-- EmployeeForm private -->
+        <div class="material-card">
+          <div class="flex justify-between">
+            <a href="#" class="font-semibold text-[#1D2B2E] text-2xl">EmployeeForm</a>
+            <span class="status-pill status-private">private</span>
+          </div>
+          <p class="text-xs text-[#47656B] mt-2">HTML · May 13</p>
+          <p class="text-sm text-[#1D2B2E] mt-3">Internal employee interface.</p>
+          <div class="flex flex-wrap gap-1.5 mt-4"><span class="material-chip">HTML</span><span class="material-chip">CSS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER – clean, simple, minimal ===== -->
+    <hr class="!mt-16">
+    <div class="flex flex-wrap justify-between items-center text-sm text-[#47656B] pt-5 pb-1">
+      <span class="flex items-center gap-2"><span class="material-icons text-[#006A6A] text-base">location_on</span> Vellore · M.Tech Software Engineering</span>
+      <span class="italic text-[#006A6A] bg-[#E0F2F2] px-4 py-2 rounded-full border border-[#C0E0E0] text-xs md:text-sm font-medium">
+        "and rivers in the desert will I see..."
+      </span>
+    </div>
+  </div> <!-- end material container -->
 </body>
 </html>
